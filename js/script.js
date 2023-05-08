@@ -24,8 +24,7 @@ function init() {
     else {
         wrap.style.width = (16 * (FIELD_SIZE_X + 1)).toString() + 'px';
     }
-    
-    
+       
     // События кнопок Старт и Новая игра
     document.getElementById('snake-start').addEventListener('click', startGame); // Регистрируем событие по клику
     document.getElementById('snake-renew').addEventListener('click', refreshGame);
@@ -98,14 +97,10 @@ function respawn() {
     points.innerHTML = score;
 }
 
-
-
-
 /**
  * Движение змейки
  */
 function move() {
-    //console.log('move',direction);
     // Сборка классов
     var snake_head_classes = snake[snake.length-1].getAttribute('class').split(' ');
 
@@ -133,13 +128,9 @@ function move() {
         new_unit = headTeleport(coord_y, coord_x);
     }
 
-
-
-
     // Проверки
     // 1) new_unit не часть змейки
     // 2) не врезались в препятствие-проблему
-    //console.log(new_unit);
     if (!isSnakeUnit(new_unit) && pathClear(new_unit)) {
         // Добавление новой части змейки
         new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
@@ -149,10 +140,9 @@ function move() {
        
 	   if (!haveFood(new_unit)) {
             // Находим хвост
-           var removed = snake.splice(0, 1)[0];
+            var removed = snake.splice(0, 1)[0];
             var classes = removed.getAttribute('class').split(' ');
-			
-            // удаляем хвост
+			// удаляем хвост
             removed.setAttribute('class', classes[0] + ' ' + classes[1]);
         }
     }
@@ -235,10 +225,8 @@ function haveFood(unit) {
  */
 function createFood() {
     var foodCreated = false;
-    console.log("createFood1");
     while (!foodCreated) { //пока еду не создали
         // рандом
-        console.log("createFood2");
         var food_x = Math.floor(Math.random() * FIELD_SIZE_X);
         var food_y = Math.floor(Math.random() * FIELD_SIZE_Y);
 
@@ -262,11 +250,9 @@ function createFood() {
  * Функция созданяи препятствий-проблем для нашей змейки
  */
 function createProblem() {
-    console.log("createProblem1");
     var createProblem = false;
     while (!createProblem) {        //пока препятствие-проблема не создали
         // рандом
-        console.log("createProblem2");
         var problem_x = Math.floor(Math.random() * FIELD_SIZE_X);
         var problem_y = Math.floor(Math.random() * FIELD_SIZE_Y);
 
@@ -275,7 +261,6 @@ function createProblem() {
 
         // проверка на змейку
         if ((!problem_cell_classes.includes('snake-unit')) && !problem_cell_classes.includes("food-unit")) {
-            console.log("createProblem3");
             var classes1 = '';
             for (var i = 0; i < problem_cell_classes.length; i++) {
                 classes1 += problem_cell_classes[i] + ' ';
