@@ -270,7 +270,6 @@ function createProblem() {
             createProblem = true;
         }
     }
-
 }
 
 /**
